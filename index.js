@@ -14,7 +14,7 @@ cron.schedule('*/60 * * * *', function() {
 });
 
 // twap scheduler
-cron.schedule('* * * * *', function() {
+cron.schedule('*/2 * * * *', function() {
     console.log("running twap cron")
     mongoFunctions.twapCreation();
 });
