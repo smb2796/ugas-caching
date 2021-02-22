@@ -5,7 +5,7 @@ const { Logger } = require("./Logger");
 
 // Constants
 const UNISWAP_ADDRESS = "0x25fb29D865C1356F9e95D621F21366d3a5DB6BB0";
-const INFURA_URL = `wss://mainnet.infura.io/ws/v3/${process.env.INFURA_KEY}`;
+const INFURA_URL = `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`;
 const INVERTED = false;
 const TWAP_LENGTH = 7200;
 // Setup
