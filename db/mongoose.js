@@ -9,7 +9,7 @@ const TestingUniPriceFunctions = require("../price-feed/CreateNewUni");
 
 const client = new BigQuery();
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.URI}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.URI}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 mongoose
   .connect(
@@ -154,7 +154,8 @@ const getMedians = async (req, res, next) => {
       theResults.push(medians[i]);
     }
   }
-  res.json(theResults);
+    console.log("theResults", theResults)
+    res.json(theResults);
 };
 
 const getMedianRange = async (req, res, next) => {

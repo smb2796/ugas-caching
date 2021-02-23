@@ -8,16 +8,16 @@ const mongoFunctions = require('./db/mongoose');
 const app = express();
 
 // gas scheduler
-cron.schedule('*/60 * * * *', function() {
+cron.schedule('0 0 * * *', function() {
     console.log("running gas cron")
     mongoFunctions.createMedian();
 });
 
-// twap scheduler
-cron.schedule('*/2 * * * *', function() {
-    console.log("running twap cron")
-    mongoFunctions.twapCreation();
-});
+// // twap scheduler
+// cron.schedule('*/2 * * * *', function() {
+//     console.log("running twap cron")
+//     mongoFunctions.twapCreation();
+// });
 
 
 app.use(bodyParser.json());
@@ -39,10 +39,10 @@ app.get('/median-range', mongoFunctions.getMedianRange)
 
 app.get('/current-median', mongoFunctions.getLatestMedian);
 
-app.get('/twap', mongoFunctions.getTwaps);
+// app.get('/twap', mongoFunctions.getTwaps);
 
-app.get('/current-twap', mongoFunctions.getLatestTwap);
+// app.get('/current-twap', mongoFunctions.getLatestTwap);
 
-app.get('/twap-range', mongoFunctions.getTwapRange);
+// app.get('/twap-range', mongoFunctions.getTwapRange);
 
 app.listen(8080);
