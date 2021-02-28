@@ -13,11 +13,11 @@ cron.schedule('0 0 * * *', function() {
     mongoFunctions.createMedian();
 });
 
-// // twap scheduler
-// cron.schedule('*/2 * * * *', function() {
-//     console.log("running twap cron")
-//     mongoFunctions.twapCreation();
-// });
+// twap scheduler
+cron.schedule('0 * * * *', function() {
+    console.log("running twap cron")
+    mongoFunctions.twapCreation();
+});
 
 
 app.use(bodyParser.json());
@@ -39,10 +39,10 @@ app.get('/median-range', mongoFunctions.getMedianRange)
 
 app.get('/current-median', mongoFunctions.getLatestMedian);
 
-// app.get('/twap', mongoFunctions.getTwaps);
+app.get('/twap', mongoFunctions.getTwaps);
 
-// app.get('/current-twap', mongoFunctions.getLatestTwap);
+app.get('/current-twap', mongoFunctions.getLatestTwap);
 
-// app.get('/twap-range', mongoFunctions.getTwapRange);
+app.get('/twap-range', mongoFunctions.getTwapRange);
 
 app.listen(8080);
