@@ -150,9 +150,9 @@ const getMedians = async (req, res, next) => {
   const medians = await GasMedian.find().select("timestamp price").exec();
   let theResults = [];
   for (let i = 0; i < medians.length; i++) {
-    if (i % 2 == 0) {
+    // if (i % 2 == 0) {
       theResults.push(medians[i]);
-    }
+    // }
   }
     console.log("theResults", theResults)
     res.json(theResults);
@@ -168,9 +168,9 @@ const getMedianRange = async (req, res, next) => {
 
     let theResults = [];
     for (let i = 0; i < medians.length; i++) {
-      if (i % 2 == 0) {
+    //   if (i % 2 == 0) {
         theResults.push(medians[i]);
-      }
+    //   }
     }
     res.json(theResults);
 
@@ -186,9 +186,9 @@ const getTwaps = async (req, res, next) => {
   const twaps = await Twap.find().select("timestamp price").exec();
   let theResults = [];
   for (let i = 0; i < twaps.length; i++) {
-    if (i % 2 == 0) {
+    // if (i % 2 == 0) {
       theResults.push(twaps[i]);
-    }
+    // }
   }
   res.json(theResults);
 };
@@ -204,9 +204,9 @@ const getTwapRange = async (req, res, next) => {
     
     let theResults = [];
     for (let i = 0; i < twaps.length; i++) {
-      if (i % 2 == 0) {
+    //   if (i % 2 == 0) {
         theResults.push(twaps[i]);
-      }
+    //   }
     }
     res.json(theResults);
   };
