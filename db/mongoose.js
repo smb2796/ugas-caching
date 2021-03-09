@@ -38,7 +38,7 @@ const createMedian = async (req, res, next) => {
 };
 
 const getIndexFromSpreadsheet = async (req, res, next) => {
-  const indexValue = fetchIndex();
+  const indexValue = await fetchIndex();
 
   const fetchedIndex = new Index({
     timestamp: indexValue[0],
