@@ -5,4 +5,4 @@ const medianSchema = new mongoose.Schema({
     price: { type: Number, require: true}
 });
 
-module.exports = mongoose.model('IndexPrice', medianSchema);
+module.exports = mongoose.model('Index', medianSchema);

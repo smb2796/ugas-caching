@@ -6,7 +6,7 @@ const BigNumber = require("bignumber.js");
 
 const GasMedian = require("../models/median");
 const Twap = require("../models/twap");
-const IndexPrice = require("../models/indexPrice");
+const Index = require("../models/indexValue");
 const TestingUniPriceFunctions = require("../price-feed/CreateNewUni");
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
@@ -41,7 +41,7 @@ const createMedian = async (req, res, next) => {
 const getIndexFromSpreadsheet = async (req, res, next) => {
   const indexValue = fetchIndex();
 
-  const fetchedIndex = new IndexPrice({
+  const fetchedIndex = new Index({
     timestamp: indexValue[0],
     price: indexValue[1],
   });
@@ -212,6 +212,12 @@ const getIndex = async (req, res, next) => {
     res.json(theResults);
 };
 
+const getLatestIndex = async (req, res, next) => {
+  const index = await Index.find().select("timestamp price").exec();
+
+  res.json(index[index.length - 1]);
+};
+
 const getMedianRange = async (req, res, next) => {
     let currentTime = new Date();
     let earlierTime = currentTime - 259200000;
@@ -294,6 +300,7 @@ exports.createMedian = createMedian;
 exports.getIndexFromSpreadsheet = getIndexFromSpreadsheet;
 exports.getMedians = getMedians;
 exports.getIndex = getIndex;
+exports.getLatestIndex = getLatestIndex;
 exports.getTwaps = getTwaps;
 exports.getLatestMedian = getLatestMedian;
 exports.twapCreation = twapCreation;

@@ -13,16 +13,16 @@ cron.schedule('0 0 * * *', function() {
     mongoFunctions.createMedian();
 });
 
-// twap scheduler
-cron.schedule('0 * * * *', function() {
-    console.log("running twap cron")
-    mongoFunctions.twapCreation();
-});
-
 // index scheduler
 cron.schedule('0 * * * *', function() {
   console.log("running index cron")
   mongoFunctions.getIndexFromSpreadsheet();
+});
+
+// twap scheduler
+cron.schedule('0 * * * *', function() {
+    console.log("running twap cron")
+    mongoFunctions.twapCreation();
 });
 
 
@@ -41,7 +41,9 @@ app.use((req, res, next) => {
 
 app.get('/median', mongoFunctions.getMedians);
 
-app.get('/index-price', mongoFunctions.getIndex);
+app.get('/index', mongoFunctions.getIndex);
+
+app.get('/current-index', mongoFunctions.getLatestIndex);
 
 app.get('/median-range', mongoFunctions.getMedianRange)
 
