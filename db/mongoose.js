@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { BigQuery } = require("@google-cloud/bigquery");
 const highland = require("highland");
 const moment = require("moment");
+const BigNumber = require("bignumber.js");
 
 const GasMedian = require("../models/median");
 const Twap = require("../models/twap");
