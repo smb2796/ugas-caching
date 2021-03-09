@@ -172,8 +172,8 @@ async function fetchIndex() {
   let priceResponse;
 
   try {
-    const doc = new GoogleSpreadsheet("1ghUzXmKIcxJgfLIymZZ373iUPpVAfWfqZcdv4hCxhKk");
-    await doc.useApiKey("AIzaSyA67a7rX10nA2qAoW5bCvOYXqFkszMbEU0");
+    const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
+    await doc.useApiKey(process.env.GAPI_KEY);
     await doc.loadInfo();
 
     const sheet = await doc.sheetsByIndex[0];
@@ -200,7 +200,7 @@ const getMedians = async (req, res, next) => {
 };
 
 const getIndex = async (req, res, next) => {
-  const index = await GasMedian.find().select("timestamp price").exec();
+  const index = await Index.find().select("timestamp price").exec();
   let theResults = [];
   for (let i = 0; i < index.length; i++) {
     // if (i % 2 == 0) {
