@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const { BigQuery } = require("@google-cloud/bigquery");
 const highland = require("highland");
 const moment = require("moment");
-const BigNumber = require("bignumber.js");
 
 const GasMedian = require("../models/median");
 const Twap = require("../models/twap");
@@ -180,7 +179,7 @@ async function fetchIndex() {
     const sheet = await doc.sheetsByIndex[0];
     await sheet.loadCells("M50");
     const targetCell = await sheet.getCellByA1("M50");
-    priceResponse = new BigNumber(targetCell.value).decimalPlaces(2);
+    priceResponse = targetCell.value;
   } catch (error) {
     console.error(error);
   }
